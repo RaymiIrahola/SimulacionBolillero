@@ -31,7 +31,8 @@ namespace DominioBolillero
 
         public void Reingresar()
         {
-            
+            bolillaAdentro.AddRange(bolillaAfuera);
+            bolillaAfuera.Clear();
         }
 
         private void CargartBolillero(byte inicio, byte fin)
@@ -39,7 +40,7 @@ namespace DominioBolillero
 
             for (byte i = inicio; i < fin; i++)
             {
-
+                bolillaAdentro.Add(i);
             }
         }
         

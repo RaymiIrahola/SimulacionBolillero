@@ -13,14 +13,17 @@ namespace DominioBolillero
 
         }
 
-        public bool Jugar()
+        public bool Jugar(List<byte>)
         {
 
         }
 
-        public long JugarN()
+        public long JugarN(List<byte>, long )
         {
+            for (int ind = 0; ind < ; ind++)
+            {
 
+            }
         }
 
     }
