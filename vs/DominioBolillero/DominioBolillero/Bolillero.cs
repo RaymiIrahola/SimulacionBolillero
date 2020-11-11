@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace DominioBolillero
 {
@@ -20,13 +22,17 @@ namespace DominioBolillero
         {
             List<byte> bolillaAdentro = new List<byte>();
             List<byte> bolillaAfuera = new List<byte>();
-            int cargarBolillero = new int();
+            //int cargarBolillero = new int();
         }
         
 
         public byte SacarBolilla(byte unaBolillaAfuera)
         {
-            
+            int bolilla = bolillaAdentro[numRand.Next(bolillaAdentro.Count)];
+            bolillaAfuera.Add(bolilla);
+            bolillaAdentro.Remove(bolilla);
+            return bolilla;
+
         }
 
         public void Reingresar()
