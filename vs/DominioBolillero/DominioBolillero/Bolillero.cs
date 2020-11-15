@@ -8,9 +8,13 @@ namespace DominioBolillero
     public class Bolillero
     {
         public int jugarNVeces { get; set; }
-        
+
         public List<byte> bolillaAdentro { get; set; }
+
         public List<byte> bolillaAfuera { get; set; }
+
+        public int cantDeBolillas { get; set; }
+
         Random r = new Random(DateTime.Now.Millisecond);
 
         public Bolillero()
@@ -24,11 +28,15 @@ namespace DominioBolillero
             List<byte> bolillaAfuera = new List<byte>();
             //int cargarBolillero = new int();
         }
-        
+
+        internal int SacarBolilla()
+        {
+            throw new NotImplementedException();
+        }
 
         public byte SacarBolilla(byte unaBolillaAfuera)
         {
-            int bolilla = bolillaAdentro[numRand.Next(bolillaAdentro.Count)];
+            byte bolilla = bolillaAdentro[r.Next(bolillaAdentro.Count)];
             bolillaAfuera.Add(bolilla);
             bolillaAdentro.Remove(bolilla);
             return bolilla;

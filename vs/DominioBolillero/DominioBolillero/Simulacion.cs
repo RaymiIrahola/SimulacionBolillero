@@ -32,14 +32,19 @@ namespace DominioBolillero
 
         }
 
-        public long JugarN(List<byte> jugadas, long cantDeJugadas)
+        public byte JugarN(List<byte> jugadas, int cantDeJugadas)
         {
 
-            //var representar = 0;
-            for (int ind = 0; ind < ; ind++)
+            byte ganadas = 0;
+            for (int ind = 0; ind < cantDeJugadas; ind++)
             {
-
+                if (this.Jugar(jugadas) == true)
+                {
+                    ganadas++;
+                }
             }
+
+            return ganadas; 
         }
 
     }
