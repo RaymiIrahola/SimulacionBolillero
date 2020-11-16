@@ -6,22 +6,22 @@ namespace DominioBolillero
 {
     public class Simulacion
     {
-        Bolillero bolillero = new Bolillero();
+        Bolillero bolillero;
         public List<long> jugarNveces { get; set; }
         
         public Simulacion(byte inicio, byte fin)
         {
-
+            bolillero = new Bolillero(inicio, fin);
         }
 
         public bool Jugar(List<byte> jugadas)
         {
-            var comparar = 0;
+            var bolillaSacada = 0;
             bolillero.Reingresar();
             foreach(var bolillaJugada in jugadas)
             {
-                comparar = bolillero.SacarBolilla();
-                if (comparar != bolillaJugada)
+                bolillaSacada = bolillero.SacarBolilla();
+                if (bolillaSacada != bolillaJugada)
                 {
                     return false;
                 }
@@ -32,13 +32,13 @@ namespace DominioBolillero
 
         }
 
-        public byte JugarN(List<byte> jugadas, int cantDeJugadas)
+        public long JugarN(List<byte> jugadas, long cantDeJugadas)
         {
 
-            byte ganadas = 0;
-            for (int ind = 0; ind < cantDeJugadas; ind++)
+            long ganadas = 0;
+            for (long ind = 0; ind < cantDeJugadas; ind++)
             {
-                if (this.Jugar(jugadas) == true)
+                if (this.Jugar(jugadas))
                 {
                     ganadas++;
                 }

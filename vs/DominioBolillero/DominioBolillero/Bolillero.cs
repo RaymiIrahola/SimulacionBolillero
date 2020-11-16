@@ -15,26 +15,21 @@ namespace DominioBolillero
 
         public int cantDeBolillas { get; set; }
 
-        Random r = new Random(DateTime.Now.Millisecond);
+        Random r { get; set; }
 
         public Bolillero()
         {
-
+            r = new Random(DateTime.Now.Millisecond);
+            bolillaAdentro = new List<byte>();
+            bolillaAfuera = new List<byte>();
         }
 
-        public Bolillero(byte inicio, byte fin)
+        public Bolillero(byte inicio, byte fin) : this() 
         {
-            List<byte> bolillaAdentro = new List<byte>();
-            List<byte> bolillaAfuera = new List<byte>();
-            //int cargarBolillero = new int();
+            CargartBolillero(inicio, fin);
         }
 
-        internal int SacarBolilla()
-        {
-            throw new NotImplementedException();
-        }
-
-        public byte SacarBolilla(byte unaBolillaAfuera)
+        public byte SacarBolilla()
         {
             byte bolilla = bolillaAdentro[r.Next(bolillaAdentro.Count)];
             bolillaAfuera.Add(bolilla);
