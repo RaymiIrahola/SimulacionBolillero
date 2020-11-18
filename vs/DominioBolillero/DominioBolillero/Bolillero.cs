@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DominioBolillero
 {
-    public class Bolillero
+    public class Bolillero: ICloneable
     {
         public int jugarNVeces { get; set; }
 
@@ -22,6 +22,12 @@ namespace DominioBolillero
             r = new Random(DateTime.Now.Millisecond);
             bolillaAdentro = new List<byte>();
             bolillaAfuera = new List<byte>();
+        }
+
+        private Bolillero(Bolillero original)
+        {
+            bolillaAdentro = new List<byte>(original.bolillaAdentro);
+            bolillaAfuera = new List<byte>(original.bolillaAfuera);
         }
 
         public Bolillero(byte inicio, byte fin) : this() 
@@ -52,7 +58,10 @@ namespace DominioBolillero
                 bolillaAdentro.Add(i);
             }
         }
-        
 
+        public object Clone()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
