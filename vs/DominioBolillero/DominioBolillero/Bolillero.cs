@@ -29,6 +29,11 @@ namespace DominioBolillero
             CargartBolillero(inicio, fin);
         }
 
+        public Bolillero(int cantDeBolillas)
+        {
+            this.cantDeBolillas = cantDeBolillas;
+        }
+
         public byte SacarBolilla()
         {
             byte bolilla = bolillaAdentro[r.Next(bolillaAdentro.Count)];
@@ -52,7 +57,8 @@ namespace DominioBolillero
                 bolillaAdentro.Add(i);
             }
         }
-        
+
+        public object Clone() => new Bolillero(cantDeBolillas);
 
     }
 }
