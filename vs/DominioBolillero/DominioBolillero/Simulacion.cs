@@ -8,7 +8,11 @@ namespace DominioBolillero
     public class Simulacion
     {
         Bolillero bolillero;
-        public List<long> jugarNveces { get; set; }
+
+        public long resto { get; set; }
+        //public List<long> jugarNveces { get; set; }
+
+        //Task<long>[] tarea = new Task<long>[10];
         
         public Simulacion(byte inicio, byte fin)
         {
@@ -48,20 +52,28 @@ namespace DominioBolillero
             return ganadas; 
         }
 
-        public int simularSinHilos(List<byte> jugadas, long cantDeJugadas, Bolillero bolillero)
+        public long simularSinHilos(List<byte> jugadas, long cantDeJugadas, Bolillero bolillero)
         {
             return JugarN(jugadas, cantDeJugadas, bolillero);
         }
 
-        public int simularConHilos(List<byte> jugadas, long cantJugar, int cantHilos, Bolillero bolillero)
+        public long simularConHilos(List<byte> jugadas, long cantJugar, int cantHilos, Bolillero bolillero)
         {
             var vectorTerea = new Task<long>[cantHilos];
             for (int i = 0; i < cantHilos; i++)
             {
                 Bolillero clon = (Bolillero)bolillero.Clone();
-
+                
                 vectorTerea[i] = Task.Run(() => JugarN(jugadas, cantJugar / cantHilos, clon));
             }
+
+            Bolillero otroClon = (Bolillero)bolillero.Clone();
+
+            vectorTerea[0] = Task.Run(() => JugarN(jugadas, cantJugar + resto, otroClon));
+
+            Task.WaitAll(vectorTerea);
+            return vectorTerea.Sum()
         }
+        
     }
 }
