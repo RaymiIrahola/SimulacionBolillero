@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DominioBolillero
 {
@@ -60,6 +61,7 @@ namespace DominioBolillero
         public long simularConHilos(List<byte> jugadas, long cantJugar, int cantHilos, Bolillero bolillero)
         {
             var vectorTerea = new Task<long>[cantHilos];
+            long resto = cantJugar % cantHilos;
             for (int i = 0; i < cantHilos; i++)
             {
                 Bolillero clon = (Bolillero)bolillero.Clone();
@@ -69,10 +71,10 @@ namespace DominioBolillero
 
             Bolillero otroClon = (Bolillero)bolillero.Clone();
 
-            vectorTerea[0] = Task.Run(() => JugarN(jugadas, cantJugar + resto, otroClon));
+            vectorTerea[0] = Task.Run(() => JugarN(jugadas, cantJugar / cantHilos + resto, otroClon));
 
             Task.WaitAll(vectorTerea);
-            return vectorTerea.Sum()
+            return vectorTerea.Sum(T => T.Result);
         }
         
     }
