@@ -11,8 +11,8 @@ namespace BolilleroConsola
             Simulacion simulacion = new Simulacion(0, 10);
             long cantDeSimulaciones = 10000;
             List<byte> jugadas = new List<byte> { 8 };
-
-            Console.WriteLine($"Cantidad de ganadas: {simulacion.JugarN(jugadas, cantDeSimulaciones)}");
+            Bolillero bolillero = null;
+            Console.WriteLine($"Cantidad de ganadas: {simulacion.JugarN(jugadas, cantDeSimulaciones, bolillero)}");
 
             Console.ReadLine();
         }

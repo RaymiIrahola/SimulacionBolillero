@@ -20,6 +20,12 @@ namespace DominioBolillero
             bolillero = new Bolillero(inicio, fin);
         }
 
+        //public object JugarN(List<byte> jugadas, long cantDeSimulaciones)
+        //{
+        //    throw new NotImplementedException();
+            
+        //}
+
         public bool Jugar(List<byte> jugadas)
         {
             var bolillaSacada = 0;
@@ -67,6 +73,11 @@ namespace DominioBolillero
                 Bolillero clon = (Bolillero)bolillero.Clone();
                 
                 vectorTerea[i] = Task.Run(() => JugarN(jugadas, cantJugar / cantHilos, clon));
+            }
+
+            for (int ind2 = cantHilos; ind2 >= 1; ind2--)
+            {
+                
             }
 
             Bolillero otroClon = (Bolillero)bolillero.Clone();
